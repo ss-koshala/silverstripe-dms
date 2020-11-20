@@ -679,7 +679,8 @@ class DMSDocument extends DataObject implements DMSDocumentInterface
         DMS::inst()->createStorageFolder(DMS::inst()->getStoragePath() . DIRECTORY_SEPARATOR . $toFolder);
 
         //copy the file into place
-        $fromPath = BASE_PATH . DIRECTORY_SEPARATOR . $filePath;
+//        $fromPath = BASE_PATH . DIRECTORY_SEPARATOR . $filePath;
+        $fromPath = $filePath;
 
         //version the existing file (copy it to a new "very specific" filename
         if (DMSDocument_versions::$enable_versions) {

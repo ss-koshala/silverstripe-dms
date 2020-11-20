@@ -108,7 +108,7 @@ class DMS implements DMSInterface
         $filePath = null;
         if (is_string($file)) {
             $filePath = $file;
-        } elseif (is_object($file) && $file->is_a("File")) {
+        } elseif (is_object($file) && $file->exists()) {
             $filePath = $file->Filename;
         }
 

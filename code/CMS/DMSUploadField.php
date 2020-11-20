@@ -105,7 +105,7 @@ class DMSUploadField extends UploadField
         }
 
         $name = $this->getName();
-        $tmpfile = $request->postVar($name);
+        $tmpfile = $request->postVar('Upload');
         $record = $this->getRecord();
 
         // Check if the file has been uploaded into the temporary storage.

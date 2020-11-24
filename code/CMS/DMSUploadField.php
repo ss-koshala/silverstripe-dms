@@ -65,7 +65,7 @@ class DMSUploadField extends UploadField
         } else {
             // Otherwise create it
             $doc = $dms->storeDocument($file);
-            $file->delete();
+            $file->deleteFile();
         }
 
         // Relate to the underlying document set being edited.
@@ -162,6 +162,7 @@ class DMSUploadField extends UploadField
             // Get the uploaded file into a new file object.
             try {
                 $this->upload->loadIntoFile($tmpfile, $fileObject, $this->getFolderName());
+                $this->publishFile($this->upload->getFile());
             } catch (\Exception $e) {
                 // we shouldn't get an error here, but just in case
                 $return['error'] = $e->getMessage();
@@ -181,9 +182,9 @@ class DMSUploadField extends UploadField
                         'id' => $document->ID,
                         'name' => $document->getTitle(),
                         'thumbnail_url' => $document->Icon($document->getExtension()),
-                        'edit_url' => $this->getItemHandler($document->ID)->EditLink(),
+//                        'edit_url' => $this->getItemHandler($document->ID)->EditLink(),
                         'size' => $document->getFileSizeFormatted(),
-                        'buttons' => (string) $document->renderWith($this->getTemplateFileButtons()),
+//                        'buttons' => (string) $document->renderWith($this->getTemplateFileButtons()),
                         'showeditform' => true
                     ));
 
@@ -194,6 +195,11 @@ class DMSUploadField extends UploadField
         $response = new HTTPResponse(json_encode(array($return)));
         $response->addHeader('Content-Type', 'text/plain');
         return $response;
+    }
+
+    public function publishFile($file) {
+        $file->publishSingle();
+        return $file;
     }
 
 

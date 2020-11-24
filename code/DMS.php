@@ -109,7 +109,7 @@ class DMS implements DMSInterface
         if (is_string($file)) {
             $filePath = $file;
         } elseif (is_object($file) && $file->exists()) {
-            $filePath = $file->Filename;
+            $filePath = $file->getSourceURL();
         }
 
         if (!$filePath) {

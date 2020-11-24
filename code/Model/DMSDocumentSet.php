@@ -393,7 +393,7 @@ class DMSDocumentSet extends DataObject
         $result = parent::validate();
 
         if (!$this->getTitle()) {
-            $result->error(_t('DMSDocumentSet.VALIDATION_NO_TITLE', '\'Title\' is required.'));
+            $result->addError(_t('DMSDocumentSet.VALIDATION_NO_TITLE', '\'Title\' is required.'));
         }
         return $result;
     }

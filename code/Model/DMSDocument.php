@@ -681,7 +681,8 @@ class DMSDocument extends DataObject implements DMSDocumentInterface
         //copy the file into place
         //$fromPath = BASE_PATH . DIRECTORY_SEPARATOR . $filePath;
         //$fromPath = "/var/www/html/ss4/brandday/public".$filePath;
-        $fromPath = $filePath;
+        $publicPath = Director::publicFolder();
+        $fromPath = $publicPath . $filePath;
 
         //version the existing file (copy it to a new "very specific" filename
         if (DMSDocument_versions::$enable_versions) {

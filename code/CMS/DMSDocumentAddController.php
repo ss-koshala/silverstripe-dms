@@ -126,7 +126,7 @@ class DMSDocumentAddController extends LeftAndMain
         asort($exts);
         $backlink = $this->Backlink();
         $done = "
-		<a class=\"ss-ui-button ss-ui-action-constructive cms-panel-link ui-corner-all\" href=\"" . $backlink . "\">
+		<a class=\"btn action btn-outline-primary font-icon-tick\" href=\"" . $backlink . "\">
 			" . _t('UploadField.DONE', 'DONE') . "
 		</a>";
 

@@ -120,6 +120,11 @@ class DMSDocumentAddController extends LeftAndMain
         $uploadField->setTemplate('AssetUploadField');
         $uploadField->setRecord($documentSet);
 
+        if($documentSet->ID > 0) {
+            $session = $this->getRequest()->getSession();
+            $session->set('dsid', $documentSet->ID);
+        }
+
         $uploadField->getValidator()->setAllowedExtensions($this->getAllowedExtensions());
         $exts = $uploadField->getValidator()->getAllowedExtensions();
 

@@ -44,6 +44,7 @@ use SilverStripeDMS\CMS\DMSGridFieldEditButton;
 use SilverStripeDMS\DMS;
 use SilverStripeDMS\Forms\DMSJsonField;
 use Symbiote\GridFieldExtensions\GridFieldOrderableRows;
+use UndefinedOffset\SortableGridField\Forms\GridFieldSortableRows;
 
 class DMSDocumentSet extends DataObject
 {
@@ -150,9 +151,9 @@ class DMSDocumentSet extends DataObject
                 }
                 $gridFieldConfig->addComponent($paginatorComponent);
 
-                if (class_exists('GridFieldSortableRows')) {
+                if (class_exists(GridFieldSortableRows::class)) {
                     $gridFieldConfig->addComponent(new GridFieldSortableRows('DocumentSort'));
-                } elseif (class_exists('GridFieldOrderableRows')) {
+                } elseif (class_exists(GridFieldOrderableRows::class)) {
                     $gridFieldConfig->addComponent(new GridFieldOrderableRows('DocumentSort'));
                 }
 

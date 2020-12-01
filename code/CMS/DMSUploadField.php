@@ -82,6 +82,12 @@ class DMSUploadField extends UploadField
         return true;
     }
 
+    public function session()
+    {
+        $request = Injector::inst()->get(HTTPRequest::class);
+        return $request->getSession();
+    }
+
     /**
      * Action to handle upload of a single file
      *
@@ -91,6 +97,8 @@ class DMSUploadField extends UploadField
     public function upload(HTTPRequest $request)
     {
         if ($recordId = $request->postVar('ID')) {
+            $this->setRecord(DMSDocumentSet::get()->byId($recordId));
+        } else if($recordId = $this->session()->get('dsid')) {
             $this->setRecord(DMSDocumentSet::get()->byId($recordId));
         }
 
@@ -128,10 +136,11 @@ class DMSUploadField extends UploadField
                 if (!$record->isInDB()) {
                     $record->write();
                 }
-                $tooManyFiles = $record->{$name}()->count() >= $this->getAllowedMaxFileSize();
+                //later we want to handle too many files ---***
+//                $tooManyFiles = $record->{$name}()->count() >= $this->getAllowedMaxFileSize();
             // has_one only allows one file at any given time.
             } elseif ($record->hasOne($name)) {
-                $tooManyFiles = $record->{$name}() && $record->{$name}()->exists();
+//                $tooManyFiles = $record->{$name}() && $record->{$name}()->exists();
             }
 
             // Report the constraint violation.

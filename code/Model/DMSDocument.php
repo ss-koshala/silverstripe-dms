@@ -439,7 +439,7 @@ class DMSDocument extends DataObject implements DMSDocumentInterface
      */
     public function embargoUntilDate($datetime, $write = true)
     {
-        $this->EmbargoedUntilDate = DBField::create_field('DBDateTime', $datetime)->Format('Y-m-d H:i:s');
+        $this->EmbargoedUntilDate = DBField::create_field(DBDatetime::class, $datetime)->Format('Y-m-d H:i:s');
 
         if ($write) {
             $this->write();
@@ -919,7 +919,7 @@ class DMSDocument extends DataObject implements DMSDocumentInterface
             $embargoValue
         );
         $embargoDatetime = DatetimeField::create('EmbargoedUntilDate', '');
-        $embargoDatetime->setDatetimeFormat( 'dd-MM-yyyy');
+//        $embargoDatetime->setDatetimeFormat( 'dd-MM-yyyy');
 
         $expiryValue = 'None';
         if (!empty($this->ExpireAtDate)) {
@@ -935,7 +935,7 @@ class DMSDocument extends DataObject implements DMSDocumentInterface
             $expiryValue
         );
         $expiryDatetime = DatetimeField::create('ExpireAtDate', '');
-        $expiryDatetime->setDatetimeFormat('dd-MM-yyyy');
+//        $expiryDatetime->setDatetimeFormat('dd-MM-yyyy');
 
         // This adds all the actions details into a group.
         // Embargo, History, etc to go in here
@@ -1092,7 +1092,7 @@ class DMSDocument extends DataObject implements DMSDocumentInterface
             $ext = "generic";
         }
 
-        return DMS_DIR."/images/app_icons/{$ext}_32.png";
+        return '_resources/'.DMS_DIR."/images/app_icons/{$ext}_32.png";
     }
 
     /**

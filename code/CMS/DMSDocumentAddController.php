@@ -260,10 +260,11 @@ class DMSDocumentAddController extends LeftAndMain
         $term = (string) $this->getRequest()->getVar('term');
         $termSql = Convert::raw2sql($term);
         $data = DMSDocument::get()
-            ->where(
-                '("ID" LIKE \'%' . $termSql . '%\' OR "Filename" LIKE \'%' . $termSql . '%\''
-                . ' OR "Title" LIKE \'%' . $termSql . '%\')'
-            )
+            ->filterAny([
+                'ID:PartialMatch'=> $termSql,
+                'Filename:PartialMatch' => $termSql,
+                'Title:PartialMatch' => $termSql
+            ])
             ->sort('ID ASC')
             ->limit(20);
 

@@ -57,6 +57,9 @@
       margin-top: 0;
       margin-left: 34px;
       overflow: hidden; }
+    .dmsdocument-actionspanel .fieldgroup .field {
+        width: 100%;
+    }
       .dmsdocument-actionspanel .fieldgroup .embargo .embargoDatetime .field.date, .dmsdocument-actionspanel .fieldgroup .embargo .embargoDatetime .field.time,
       .dmsdocument-actionspanel .fieldgroup .embargo .expiryDatetime .field.date,
       .dmsdocument-actionspanel .fieldgroup .embargo .expiryDatetime .field.time,

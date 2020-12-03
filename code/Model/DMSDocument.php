@@ -439,7 +439,7 @@ class DMSDocument extends DataObject implements DMSDocumentInterface
      */
     public function embargoUntilDate($datetime, $write = true)
     {
-        $this->EmbargoedUntilDate = DBField::create_field(DBDatetime::class, $datetime)->Format('Y-m-d H:i:s');
+        $this->EmbargoedUntilDate = $datetime;
 
         if ($write) {
             $this->write();
@@ -502,7 +502,7 @@ class DMSDocument extends DataObject implements DMSDocumentInterface
      */
     public function expireAtDate($datetime, $write = true)
     {
-        $this->ExpireAtDate = DBField::create_field('DBDatetime', $datetime)->Format('Y-m-d H:i:s');
+        $this->ExpireAtDate = $datetime;
 
         if ($write) {
             $this->write();

@@ -11,24 +11,69 @@
           {
             dataType: 'json',
             success: function (data, textstatus) {
-              var fn = window.tmpl.cache['ss-uploadfield-addtemplate'];
-              var fnout = fn({
-                files: [data],
-                formatFileSize: function (bytes) {
-                  if (typeof bytes !== 'number') {
-                    return '';
-                  }
-                  if (bytes >= 1000000000) {
-                    return (bytes / 1000000000).toFixed(2) + ' GB'
-                  }
-                  if (bytes >= 1000000) {
-                    return (bytes / 1000000).toFixed(2) + ' MB';
-                  }
-                  return (bytes / 1000).toFixed(2) + ' KB';
-                }
-              });
 
-              $('.ss-add-files').append(fnout);
+              let html  = '<li class="ss-uploadfield-item template-download';
+
+              if(data.error) {
+                html += 'ui-state-error " ';
+              } else {
+                html += ' " ';
+              }
+
+              html += 'data-fileid=" '+data.id+' ">' +
+                '<div class="ss-uploadfield-item-preview preview"><span>' +
+                '<img src=" '+data.thumbnail_url+' " alt="" />' +
+                '</span></div>' +
+                '<div class="ss-uploadfield-item-info">' +
+                '<label class="ss-uploadfield-item-name">' +
+                '<span class="name" title="'+ data.name +'">'+ data.name +'</span>';
+
+              if(!data.error) {
+                html += '<div class="ss-uploadfield-item-status ui-state-success-text" title="'+
+                  ss.i18n._t('UploadField.AddedToDocumentSet', 'Added to Document Set')+'">'+
+                  ss.i18n._t('UploadField.AddedToDocumentSet', 'Added to Document Set')+'</div>';
+              } else {
+                html += '<div class="ss-uploadfield-item-status ui-state-error-text" ' +
+                  'title="'+options.errorMessages[data.error] || data.error +'"> '+ options.errorMessages[data.error] || data.error +'</div>';
+              }
+
+              html += '<div class="clear"><!-- --></div></label>';
+
+              if(data.error) {
+                html += '<div class="ss-uploadfield-item-actions">' +
+                  '<div class="ss-uploadfield-item-cancel ss-uploadfield-item-cancelfailed">' +
+                  '<button class="icon icon-16">' + ss.i18n._t('UploadField.CANCEL', 'Cancel') + '</button></div></div>';
+              } else {
+                html += '<div class="ss-uploadfield-item-actions">'+ print(data.buttons, true); +'</div>';
+              }
+
+              html += '</div>';
+
+              if(!data.error) {
+                html += '<div class="ss-uploadfield-item-editform loading">' +
+                  '<iframe frameborder="0" src="'+ data.edit_url +'"></iframe></div>';
+              }
+
+              html += '</li>';
+
+              // var fn = window.tmpl.cache['ss-uploadfield-addtemplate'];
+              // var fnout = fn({
+              //   files: [data],
+              //   formatFileSize: function (bytes) {
+              //     if (typeof bytes !== 'number') {
+              //       return '';
+              //     }
+              //     if (bytes >= 1000000000) {
+              //       return (bytes / 1000000000).toFixed(2) + ' GB'
+              //     }
+              //     if (bytes >= 1000000) {
+              //       return (bytes / 1000000).toFixed(2) + ' MB';
+              //     }
+              //     return (bytes / 1000).toFixed(2) + ' KB';
+              //   }
+              // });
+
+              $('.ss-add-files').append(html);
             }
           }
         );

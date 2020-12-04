@@ -835,7 +835,7 @@ class DMSDocument extends DataObject implements DMSDocumentInterface
         //create upload field to replace document
         $uploadField = new DMSUploadField('ReplaceFile', 'Replace file');
         $uploadField->setAllowedMaxFileNumber(1);
-        $uploadField->setTemplate('ss-dmsuploadfield-downloadtemplate');
+//        $uploadField->setTemplate('ss-dmsuploadfield-downloadtemplate');
         $uploadField->setRecord($this);
 
         $gridFieldConfig = GridFieldConfig::create()->addComponents(

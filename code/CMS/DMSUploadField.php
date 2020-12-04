@@ -39,13 +39,28 @@ class DMSUploadField extends UploadField
 
     private static $allowed_actions = [
         "upload",
+        'handleItem'
     ];
+
+    private static $url_handlers = array(
+        'item/$ID' => 'handleItem'
+    );
 
     /**
      * The temporary folder name to store files in during upload
      * @var string
      */
     protected $folderName = 'DMSTemporaryUploads';
+
+    protected $templateFileEdit = 'UploadField_FileEdit';
+
+    public function handleItem(HTTPRequest $request) {
+        return $this->getItemHandler($request->param('ID'));
+    }
+
+    public function getTemplateFileEdit() {
+        return $this->templateFileEdit;
+    }
 
     /**
      * Override the default behaviour of the UploadField and take the uploaded file (uploaded to assets) and

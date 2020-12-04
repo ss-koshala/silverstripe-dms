@@ -44,7 +44,7 @@
                   '<div class="ss-uploadfield-item-cancel ss-uploadfield-item-cancelfailed">' +
                   '<button class="icon icon-16">' + ss.i18n._t('UploadField.CANCEL', 'Cancel') + '</button></div></div>';
               } else {
-                html += '<div class="ss-uploadfield-item-actions">'+ print(data.buttons, true); +'</div>';
+                html += '<div class="ss-uploadfield-item-actions">'+ data.buttons +'</div>';
               }
 
               html += '</div>';

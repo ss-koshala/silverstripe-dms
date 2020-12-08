@@ -21,7 +21,7 @@
               }
 
               html += 'data-fileid=" '+data.id+' ">' +
-                '<div class="ss-uploadfield-item-preview preview"><span>' +
+                '<div class="ss-uploadfield-item-preview"><span>' +
                 '<img src=" '+data.thumbnail_url+' " alt="" />' +
                 '</span></div>' +
                 '<div class="ss-uploadfield-item-info">' +
@@ -51,7 +51,7 @@
 
               if(!data.error) {
                 html += '<div class="ss-uploadfield-item-editform loading">' +
-                  '<iframe frameborder="0" src="'+ data.edit_url +'"></iframe></div>';
+                  '<iframe frameborder="0" src="'+ data.edit_url +'" style="width: 60%;"></iframe></div>';
               }
 
               html += '</li>';

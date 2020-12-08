@@ -294,7 +294,7 @@ class DMSDocumentAddController extends LeftAndMain
             $buttonText = '<button class="ss-uploadfield-item-edit ss-ui-button ui-corner-all"'
                 . ' title="' . _t('DMSDocument.EDITDOCUMENT', 'Edit this document') . '" data-icon="pencil">'
                 . _t('DMSDocument.EDIT', 'Edit') . '<span class="toggle-details">'
-                . '<span class="toggle-details-icon"></span></span></button>';
+                . '<span class="btn action new-toggle-details-icon"></span></span></button>';
 
             // Collect all output data.
             $return = array(

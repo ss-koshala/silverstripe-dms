@@ -35,7 +35,7 @@
         <% if not $useFieldContext %>
             <div class="middleColumn">
         <% end_if %>
-            <ul class="files ss-uploadfield-files ss-add-files"></ul>
+            <ul class="files ss-uploadfield-files ss-add-files" style="list-style:none;"></ul>
         <% if not $useFieldContext %>
             </div>
         <% end_if %>

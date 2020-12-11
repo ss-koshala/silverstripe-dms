@@ -1181,10 +1181,13 @@ class DMSDocument extends DataObject implements DMSDocumentInterface
                         $urlField = new ReadonlyField(
                             'ClickableURL',
                             _t('AssetTableField.URL', 'URL'),
-                            sprintf(
-                                '<a href="%s" target="_blank" class="file-url">%s</a>',
-                                $this->getLink(),
-                                $this->getLink()
+                            new LiteralField(
+                                "URL",
+                                sprintf(
+                                    '<a href="%s" target="_blank" class="file-url">%s</a>',
+                                    $this->getLink(),
+                                    $this->getLink()
+                                )
                             )
                         ),
                         new ReadonlyField("FilenameWithoutIDField", "Filename". ':', $this->getFilenameWithoutID()),
